@@ -2,6 +2,7 @@ import datetime
 from pytrends.request import TrendReq
 from flask import Flask, jsonify, Response
 import json
+from helper import get_time
 
 # create the application object
 app = Flask(__name__)
@@ -30,9 +31,12 @@ def get_trend(trend):
     data = data.loc[~data.index.duplicated(keep='first')]
     xx = data[trend].to_json()
     d = json.loads(xx)
+    for i in d.items():
+        print(i)
+        print(get_time(i[0]))
+
     print(type(d))
     print(d)
-
 
     return Response(data[trend].to_json(), mimetype="text/json")
 
