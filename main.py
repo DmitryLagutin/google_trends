@@ -3,6 +3,7 @@ from pytrends.request import TrendReq
 from flask import Flask, jsonify, Response
 import json
 from helper import get_time
+import matplotlib.pyplot as plt
 
 # create the application object
 app = Flask(__name__)
@@ -35,9 +36,8 @@ def get_trend(trend):
         print(i)
         print(get_time(i[0]))
 
-    print(type(d))
-    print(d)
-
+    print(data)
+    print(type(data))
     return Response(data[trend].to_json(), mimetype="text/json")
 
 
